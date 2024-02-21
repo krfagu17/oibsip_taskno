@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background: #2b2f77;
+    background: -webkit-linear-gradient(137deg, #2b2f77 0%, #141852 50%, #070b34 100%);
+    background: linear-gradient(137deg, #2b2f77 0%, #141852 50%, #070b34 100%);
+}
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid hwb(0 80% 20%);
+    border-radius: 5px;
+    background-color: rgba(71, 79, 122,0.5);
+    /* backdrop-filter: blur(100px); */
+    border: 1px solid rgba(255,255,255,0.075);
+}
+.calculator input {
+    grid-column: span 4;
+    padding: 10px;
+    font-size: 18px;
+}
+.calculator button {
+    padding: 10px;
+    font-size: 18px;
+}
+.calculator button:nth-child(18) {
+    grid-column: span 2;
+}
+.calculator .sign {
+background-color: rgba(71, 79, 122,0.5); 
+color: white; 
+}
+
+button {
+border-radius: 20px;
+}
+
+/* glitch effect */
+
+.glitch-wrapper {
+margin-top: -90px;
+margin-bottom: 90px;
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+
+}
+
+.glitch {
+position: relative;
+font-size: 80px;
+font-weight: 700;
+line-height: 1.2;
+color: #fff;
+letter-spacing: 5px;
+z-index: 1;
+}
+
+.glitch:before,
+.glitch:after {
+display: block;
+content: attr(data-glitch);
+position: absolute;
+top: 0;
+left: 0;
+opacity: 0.8;
+}
+
+.glitch:before {
+animation: glitch-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+color: #0ff;
+z-index: -1;
+}
+
+.glitch:after {
+animation: glitch-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+color: #ff00ff;
+z-index: -2;
+}
+
+@keyframes glitch-color {
+0% {
+transform: translate(0);
+}
+
+20% {
+transform: translate(-3px, 3px);
+}
+
+40% {
+transform: translate(-3px, -3px);
+}
+
+60% {
+transform: translate(3px, 3px);
+}
+
+80% {
+transform: translate(3px, -3px);
+}
+
+to {
+transform: translate(0);
+}
+}
