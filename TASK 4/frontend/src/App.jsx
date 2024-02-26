@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Navigation from '../Navigation'
+import { AuthContextProvider } from '../components/context/AuthContext'
 
 
 function App() {
@@ -10,7 +11,10 @@ function App() {
 
   return (
     <>
-      <Navigation />
+    <AuthContextProvider>
+
+       <Navigation />
+    </AuthContextProvider>
     
       
     </>

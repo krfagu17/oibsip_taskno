@@ -3,9 +3,11 @@ import './registration.css'
 import axios from 'axios'
 import { Link,useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useAuthContext } from '../context/AuthContext'
 
 
 const Registration = () => {
+  const {userAuth}=useAuthContext()
 const Navigate=useNavigate()
   const handleSubmit = async(e) => {
 
@@ -26,6 +28,9 @@ const Navigate=useNavigate()
       if(response.status===201){
         
         toast("User Registered Successfully")
+        const {token}=response.data
+        localStorage.setItem('tokens',token)
+        console.log(userAuth)
         Navigate('/home')
       }
     } catch (error) {

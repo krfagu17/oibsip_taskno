@@ -3,7 +3,11 @@ import {Link, useNavigate} from 'react-router-dom'
 import './Login.css'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+
+import { useAuthContext } from '../context/AuthContext'
 const Login = () => {
+
+  const {setUserAuth}=useAuthContext()
     const navigate = useNavigate()
     const handleSubmit =async (e) => {
         e.preventDefault()
@@ -14,7 +18,11 @@ const Login = () => {
         try {
           const response = await axios.post('http://localhost:3000/api/auth/login',loginData)
           if(response.status===200){
+            localStorage.setItem('tokens',response.data.token)
           toast("User Logged in Successfully")
+          setUserAuth(localStorage.getItem('tokens'))
+          console.log(response.data.token)
+          
             navigate('/home')
           }
         } catch (error) {

@@ -1,7 +1,7 @@
 
 import userModel from "./model/userModel.js"
 import bcrypt from "bcryptjs";
-
+import generateToken from "./generateRoken.js";
 let userName="",userEmail="";
 export const login = async (req, res) => {
     const {email,password}=req.body;
@@ -20,7 +20,10 @@ export const login = async (req, res) => {
             return res.status(400).json({message:"Invalid credentials",success:false})
         }
         else{
-            return res.status(200).json({message:"User logged in Successfully",success:true})
+            const token=generateToken();
+            console.log("token=",token)
+            return res.status(200).json({message:"User logged in Successfully",success:true,token:token})
+            
         }
     } catch (error) {
         console.log("error while logging in",error)
@@ -50,7 +53,8 @@ export const register = async (req, res) => {
 
     if(newUser){
            await newUser.save();
-           res.status(201).json({message:"User registered successfully"})
+          const token=generateToken();
+           res.status(201).json({message:"User registered successfully",token:token,success:true})
            console.log("user Created Succesfully")
         }
         else{
